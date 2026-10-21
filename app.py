@@ -22,7 +22,6 @@ def load_events():
 
     for path in [
         Path("logs/events.jsonl"),
-        Path("logs/test_events.jsonl"),
     ]:
         if not path.exists():
             continue

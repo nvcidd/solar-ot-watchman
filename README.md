@@ -271,3 +271,12 @@ Potential future improvements include:
 ## 16. License
 
 No license has been specified for this project yet.
+
+
+## 17. Docker Compose
+
+Start the services with `docker compose up --build -d` and check them with `docker compose ps`. Open the dashboard at http://localhost:8502. Stop services with `docker compose down`. The three simulated inverters use local ports 5020, 5021, and 5022.
+
+## 18. Synthetic Attack Demo
+
+Run `PYTHONPATH=. python simulators/demo_scenarios.py` from the project root. The four scenarios test unknown devices, unauthorized writes, activity outside maintenance hours, and traffic bursts. Passing these predefined scenarios does not establish the overall detection rate or false-positive rate. Synthetic events may appear alongside telemetry in the event log.

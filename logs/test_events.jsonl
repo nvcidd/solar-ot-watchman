@@ -1,9 +1,0 @@
-{"timestamp": "2026-10-20T10:00:00", "device": "INV-01", "source_ip": "10.0.0.10", "action": "read", "alerts": []}
-{"timestamp": "2026-10-20T10:01:00", "device": "ROGUE-01", "source_ip": "10.0.0.20", "action": "read", "alerts": [{"rule": "UNKNOWN_DEVICE", "severity": "HIGH", "message": "Unrecognized device: ROGUE-01"}]}
-{"timestamp": "2026-10-20T10:02:00", "device": "INV-01", "source_ip": "10.0.0.30", "action": "write", "alerts": [{"rule": "UNAUTHORIZED_WRITE", "severity": "HIGH", "message": "Modbus write observed from 10.0.0.30"}]}
-{"timestamp": "2026-10-20T22:00:00", "device": "INV-01", "source_ip": "10.0.0.40", "action": "config_change", "alerts": [{"rule": "OUTSIDE_MAINTENANCE_WINDOW", "severity": "MEDIUM", "message": "Sensitive activity at 22:00 outside maintenance hours"}]}
-{"timestamp": "2026-10-20T11:00:00", "device": "INV-01", "source_ip": "10.0.0.50", "action": "config_change", "alerts": []}
-{"timestamp": "2026-10-20T11:00:01", "device": "INV-01", "source_ip": "10.0.0.50", "action": "config_change", "alerts": []}
-{"timestamp": "2026-10-20T11:00:02", "device": "INV-01", "source_ip": "10.0.0.50", "action": "config_change", "alerts": []}
-{"timestamp": "2026-10-20T11:00:03", "device": "INV-01", "source_ip": "10.0.0.50", "action": "config_change", "alerts": []}
-{"timestamp": "2026-10-20T11:00:04", "device": "INV-01", "source_ip": "10.0.0.50", "action": "config_change", "alerts": [{"rule": "TRAFFIC_BURST", "severity": "MEDIUM", "message": "5 events within ten seconds"}]}

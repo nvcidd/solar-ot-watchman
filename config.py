@@ -1,7 +1,11 @@
+import os
+
+INVERTER_HOST = os.getenv("INVERTER_HOST", "127.0.0.1")
+
 KNOWN_DEVICES = {
-    "INV-01": {"host": "127.0.0.1", "port": 5020, "unit_id": 1},
-    "INV-02": {"host": "127.0.0.1", "port": 5021, "unit_id": 1},
-    "INV-03": {"host": "127.0.0.1", "port": 5022, "unit_id": 1},
+    "INV-01": {"host": INVERTER_HOST, "port": 5020, "unit_id": 1},
+    "INV-02": {"host": INVERTER_HOST, "port": 5021, "unit_id": 1},
+    "INV-03": {"host": INVERTER_HOST, "port": 5022, "unit_id": 1},
 }
 
 ALLOWED_HOSTS = {"127.0.0.1"}

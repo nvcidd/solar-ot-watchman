@@ -69,7 +69,7 @@ class OTMonitor:
             })
 
         # Rule 4: Detect five or more events within ten seconds
-        history = self.recent_events[source_ip]
+        history = self.recent_events[f"{source_ip}:{device}"]
         cutoff = now - timedelta(seconds=10)
 
         while history and history[0] < cutoff:
@@ -81,7 +81,10 @@ class OTMonitor:
             alerts.append({
                 "rule": "TRAFFIC_BURST",
                 "severity": "MEDIUM",
-                "message": f"{len(history)} events within ten seconds",
+                "message": (
+                    f"{len(history)} requests to {device} "
+                    f"within ten seconds from {source_ip}"
+		),
             })
 
         record = {

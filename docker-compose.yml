@@ -1,0 +1,42 @@
+services:
+  inverter-sim:
+    build: .
+    command: ["python", "simulators/inverter.py"]
+    environment:
+      PYTHONUNBUFFERED: "1"
+      SIM_BIND_HOST: "0.0.0.0"
+    ports:
+      - "127.0.0.1:5020:5020"
+      - "127.0.0.1:5021:5021"
+      - "127.0.0.1:5022:5022"
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+
+  poller:
+    build: .
+    command: ["python", "sensor/poller.py"]
+    environment:
+      PYTHONUNBUFFERED: "1"
+      INVERTER_HOST: "inverter-sim"
+    depends_on:
+      - inverter-sim
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+
+  dashboard:
+    build: .
+    command:
+      - streamlit
+      - run
+      - app.py
+      - --server.address=0.0.0.0
+      - --server.port=8501
+    ports:
+      - "127.0.0.1:8502:8501"
+    volumes:
+      - ./logs:/app/logs
+    depends_on:
+      - inverter-sim
+    restart: unless-stopped
