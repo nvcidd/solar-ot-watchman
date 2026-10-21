@@ -36,7 +36,7 @@ class OTMonitor:
             "write",
             "write_single_register",
             "write_multiple_registers",
-        }:
+        } and not event.get("authorized", False):
             alerts.append({
                 "rule": "UNAUTHORIZED_WRITE",
                 "severity": "HIGH",
