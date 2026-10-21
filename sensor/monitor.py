@@ -68,24 +68,26 @@ class OTMonitor:
                 ),
             })
 
-        # Rule 4: Detect five or more events within ten seconds
-        history = self.recent_events[f"{source_ip}:{device}"]
-        cutoff = now - timedelta(seconds=10)
+        # Rule 4: Detect bursts only when the source IP is known.
+        # Unknown sources cannot be reliably separated into clients.
+        if source_ip != "UNKNOWN":
+            history = self.recent_events[f"{source_ip}:{device}"]
+            cutoff = now - timedelta(seconds=10)
 
-        while history and history[0] < cutoff:
-            history.popleft()
+            while history and history[0] < cutoff:
+                history.popleft()
 
-        history.append(now)
+            history.append(now)
 
-        if len(history) >= 5:
-            alerts.append({
-                "rule": "TRAFFIC_BURST",
-                "severity": "MEDIUM",
-                "message": (
-                    f"{len(history)} requests to {device} "
-                    f"within ten seconds from {source_ip}"
-		),
-            })
+            if len(history) >= 5:
+                alerts.append({
+                    "rule": "TRAFFIC_BURST",
+                    "severity": "MEDIUM",
+                    "message": (
+                        f"{len(history)} requests to {device} "
+                        f"within ten seconds from {source_ip}"
+                    ),
+                })
 
         record = {
             "timestamp": now.isoformat(),
